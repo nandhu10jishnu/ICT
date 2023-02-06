@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body
+    {
+	    margin:0px;
+	    background-color:#f2c224;
+	   /* background-image:url(image/background.jpg); */
+	    color:#f9fcf5;
+	    font-family:Arial, Helvetica, sans-serif;
+    }
+    
+    #main{width:600px; height:auto; overflow:hidden; padding-bottom:20px; margin-left:auto; margin-right:auto; 
+    border-radius:5px; padding-left:10px; margin-top:100px; border-top:3px double #f1f1f1; 
+    border-bottom:3px double #f1f1f1; padding-top:20px;
+    }
+    
+    #main table{font-family:"Comic Sans MS", cursive;}
+    /* css code for textbox */
+    #main .tb{height:28px; width:230px; border:1px solid #f26724; color:#fd7838; font-weight:bold; border-left:5px solid #f7f7f7; opacity:0.9;}
+    
+    #main .tb:focus{height:28px; border:1px solid #f26724; outline:none; border-left:5px solid #f7f7f7;}
+
+    /* css code for button*/
+    #main .btn{width:150px; height:32px; outline:none;  color:#f7f7f7; font-weight:bold; border:0px solid #f26724; 
+    text-shadow: 0px 0.5px 0.5px #fff; border-radius: 2px; font-weight: 600; color: #f26724; letter-spacing: 1px; 
+    font-size:14px; background-color:#f1f1f1; -webkit-transition: 1s; -moz-transition: 1s; transition: 1s;}
+  
+    #main .btn:hover{background-color:#f26724; outline:none;  border-radius: 2px; color:#f1f1f1; border:1px solid #f1f1f1;
+    -webkit-transition: 1s; -moz-transition: 1s; transition: 1s; }
+    </style>
+</head>
+<body>
+    <!DOCTYPE html>
+  <html>
+  <head>
+  <title>Welcome To Registration Form</title>
+  </head>
+
+	<body>
+	<!-- Main div code -->
+	<div id="main">
+	<div class="h-tag">
+	<h2>Create Your Account</h2>
+	</div>
+	<!-- create account div -->
+	<div class="login">
+	<table cellspacing="2" align="center" cellpadding="8" border="0">
+	<tr>
+	<td align="right">UserName :</td>
+	<td><input type="text" placeholder="Enter user here" id="txtusernmae" class="tb" onchange="usernamecheck()" /></td>
+	</tr>
+	<tr>
+	<td align="right">Email :</td>
+	<td><input type="text" placeholder="Enter Email ID here" id="txtemail" class="tb" onchange="Emailcheck()"/></td>
+	</tr>
+	<!-- <tr>
+	<td align="right">Enter Username :</td>
+	<td><input type="text" placeholder="Enter Username here" id="t3" class="tb" /></td>
+	</tr> -->
+	<tr>
+	<td align="right">Password :</td>
+	<td><input type="password" placeholder="Enter Password here" id="txtpass" class="tb" onchange="Passwordcheck()" /></td>
+	</tr>
+	<tr>
+	<td align="right">Confirm Password :</td>
+	<td><input type="password" placeholder="Enter Confirm Password here" id="txtconfpass" class="tb" onchange="Passwordcheck()"/></td>
+	</tr>
+	<tr>
+	<td></td>
+	<td>
+	<!-- <input type="reset" value="Clear Form" onclick="clearFunc()" id="res" class="btn" /> -->
+	<input type="submit" value="Submit" class="btn" onclick="return registration()" /></td>
+	</tr>
+	</table>
+	</div>
+	<!-- create account box ending here.. -->
+	</div>
+	<!-- Main div ending here... -->
+
+    <script>
+    var checkval =false;
+    function registration()
+	{
+
+		var usr = usernamecheck();
+        var eml = Emailcheck();
+        var pas = Passwordcheck();
+        if(usr == false && eml == false && pas == false)
+        {
+            alert('Registered Successfully');	
+            window.location = "dashboard.html"; 
+        }
+       
+	}
+    function usernamecheck()
+    {
+        var name= document.getElementById("txtusernmae");
+        var letters = /^[A-Za-z]+$/;
+      
+        if(name.value=='')
+		{
+			alert('Please enter your name');
+            name.style.border ="2px solid red";
+            name.focus();
+            return true;
+		}
+		else if(!letters.test(name.value))
+		{
+			alert('Name field required only alphabet characters');
+            name.style.border ="2px solid red";
+            name.focus();
+            return true;
+		}
+       else{
+       
+        name.style.border ="2px solid green";
+        return false;
+       }
+     
+        
+    }
+    function Emailcheck()
+    {
+        var email= document.getElementById("txtemail");
+         //email id expression code
+		var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        if(email.value=='')
+		{
+			alert('Please enter email id');
+            email.style.border ="2px solid red";
+            email.focus();
+            return true;
+		}
+		else if (!filter.test(email.value))
+		{
+			alert('Invalid email');
+            email.style.border ="2px solid red";
+            email.focus();
+            return true;
+		}
+        else{
+            email.style.border ="2px solid green";
+           return false;
+        }
+    }
+    function Passwordcheck()
+    {
+        var pwd_expression = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])/;
+        var pwd= document.getElementById("txtpass");			
+		var cpwd= document.getElementById("txtconfpass");
+        if(pwd.value=='')
+		{
+			alert('Please enter Password');
+            pwd.style.border ="2px solid red";
+            pwd.focus();
+            return true;
+		}
+		else if(cpwd.value=='')
+		{
+			alert('Enter Confirm Password');
+            cpwd.style.border ="2px solid red";
+            cpwd.focus();
+            return true;
+		}
+       
+		else if(!pwd_expression.test(pwd.value))
+		{
+			alert ('Upper case, Lower case, Special character and Numeric letter are required in Password filed');
+            pwd.style.border ="2px solid red";
+            pwd.focus();
+            return true;
+		}
+		else if(pwd.value != cpwd.value)
+		{
+			alert ('Password not Matched');
+            cpwd.style.border ="2px solid red";
+            cpwd.focus();
+            return true;
+		}
+		else if(cpwd.value.length < 6)
+		{
+			alert ('Password minimum length is 6');
+            cpwd.style.border ="2px solid red";
+            cpwd.focus();
+            return true;
+		}
+		else if(cpwd.value.length > 12)
+		{
+			alert ('Password max length is 12');
+            cpwd.style.border ="2px solid red";
+            cpwd.focus();
+            return true;
+		}
+        else{
+            pwd.style.border ="2px solid green";
+            cpwd.style.border ="2px solid green";
+           
+            return false;
+        }
+    }
+   
+   </script>
+	</body>
+	</html>
+</body>
+</html>
